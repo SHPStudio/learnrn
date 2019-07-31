@@ -1,6 +1,7 @@
 package com.learnrn1;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+  private static Context mContext;
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -42,6 +44,11 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    mContext = this;
     SoLoader.init(this, /* native exopackage */ false);
+  }
+
+  public static Context getContext() {
+    return mContext;
   }
 }

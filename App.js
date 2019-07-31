@@ -34,6 +34,14 @@ export default class App extends Component<Props> {
         let result = await Calendar.getAllAccount();
         Alert.alert(JSON.stringify(result))
     };
+    onPressAddAccount= async() => {
+        let result = await Calendar.addAccount("shp","shp@test.com")
+        if (result != -1) {
+            Alert.alert("添加用户成功")
+        }else {
+            Alert.alert("添加用户失败")
+        }
+    }
   render() {
     return (
       <View style={styles.container}>
@@ -42,6 +50,7 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>{instructions}</Text>
         <Button title="测试" onPress={this.onPressText}/>
           <Button title="获取所有用户" onPress={this.onPressAccount}/>
+          <Button title="添加用户" onPress={this.onPressAddAccount}/>
       </View>
     );
   }
