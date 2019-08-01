@@ -8,5 +8,8 @@ export default {
     },
     async addAccount(name, email) {
         return await Calendar.addAccount(name,email)
+    },
+    async addCalendarEvent(message) {
+        return await Calendar.addCalendarEvent(message);
     }
 }
