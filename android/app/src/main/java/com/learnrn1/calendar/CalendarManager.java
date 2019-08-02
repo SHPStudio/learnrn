@@ -99,7 +99,7 @@ public class CalendarManager {
      * @param calendarDisplayName 用户昵称
      * @return 成功返回新增日历用户id 否则返回-1表示失败
      */
-    public Double addAccount(String name, String email, String calendarDisplayName) {
+    public long addAccount(String name, String email, String calendarDisplayName) {
         TimeZone timeZone = TimeZone.getDefault();
         ContentValues value = new ContentValues();
         value.put(CalendarContract.Calendars.NAME, name);
@@ -125,7 +125,7 @@ public class CalendarManager {
 
         Uri result = getContentResolver().insert(calendarUri, value);
         long id = result == null ? -1 : ContentUris.parseId(result);
-        return Double.longBitsToDouble(id);
+        return id;
     }
 
     public int addCalendarEvent(CalendarEvent calendarEvent) {
@@ -135,7 +135,8 @@ public class CalendarManager {
         System.out.println("检查账户: " + calId);
         if (calId < 0) {
             // 创建日历账户
-            calId = addAccount("calendar", "calendar@test.com", "测试日历账户").intValue();
+            calId = (int)addAccount("calendar", "calendar@test.com", "测试日历账户");
+            System.out.println("创建账户: " + calId);
             if (calId < 0) {
                 // 创建失败
                 return -1;

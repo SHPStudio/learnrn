@@ -9,6 +9,9 @@ import com.learnrn1.calendar.CalendarEvent;
 import com.learnrn1.calendar.CalendarManager;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
+    /**
+     * 日历管理器
+     */
     private CalendarManager calendarManager = CalendarManager.getInstance();
 
 
@@ -34,7 +37,8 @@ public class CalendarModule extends ReactContextBaseJavaModule {
         promise.resolve(id);
     }
 
-    @ReactMethod void addCalendarEvent(String message, Promise promise) {
+    @ReactMethod
+    void addCalendarEvent(String message, Promise promise) {
         System.out.println("接收到数据: " + message);
         int result = calendarManager.addCalendarEvent(JSON.parseObject(message, CalendarEvent.class));
         promise.resolve(result);

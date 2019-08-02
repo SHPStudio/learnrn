@@ -46,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     mContext = this;
     SoLoader.init(this, /* native exopackage */ false);
+
   }
 
   public static Context getContext() {
