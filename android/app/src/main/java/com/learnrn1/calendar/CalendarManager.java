@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.CalendarContract;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
@@ -150,6 +151,7 @@ public class CalendarManager {
         event.put(CalendarContract.Events.DTEND, calendarEvent.getEndTime());
         event.put(CalendarContract.Events.HAS_ALARM, 1);
         event.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Shanghai");
+        event.put(CalendarContract.Events.CUSTOM_APP_PACKAGE, "com.shape");
         Uri newEvent = getContentResolver().insert(Uri.parse(CALANDER_EVENT_URL), event);
         if (newEvent == null) {
             Log.w("leanrn", String.format("CalendarManager.addCalendarEvent 添加日历事件失败, event:%s", JSON.toJSONString(calendarEvent)));
@@ -166,6 +168,43 @@ public class CalendarManager {
             return -3;
         }
         return 0;
+    }
+
+    public CalendarEvent getCalendarEventByAlarmTime(String alarmTime) {
+        Cursor cursor = CalendarContract.Instances.query(getContentResolver(),null, Long.valueOf(alarmTime), Long.valueOf(alarmTime));
+        if (cursor != null) {
+            cursor.moveToFirst();
+            String title = cursor.getString(cursor.getColumnIndex(CalendarContract.Instances.TITLE));
+            String description = cursor.getString(cursor.getColumnIndex(CalendarContract.Instances.DESCRIPTION));
+            int calId = cursor.getInt(cursor.getColumnIndex(CalendarContract.Instances.EVENT_ID));
+            CalendarEvent event = new CalendarEvent();
+            event.setCalEventId(calId);
+            event.setDescription(description);
+            event.setTitle(title);
+            return event;
+        }
+        return null;
+    }
+
+    public void deleteOutDateCalendarEvent() {
+//        Cursor cursor = CalendarContract.Instances.query(getContentResolver(), null, 0, Calendar.getInstance().getTimeInMillis());
+        Cursor cursor = getContentResolver().query(Uri.parse(CALANDER_EVENT_URL), null, CalendarContract.Events.DTEND + "<" + Calendar.getInstance().getTimeInMillis() + " AND " + CalendarContract.Events.CUSTOM_APP_PACKAGE + "='com.shape'",null,null);
+        if (cursor != null && cursor.getCount() > 0) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                int eventId = cursor.getInt(cursor.getColumnIndex(CalendarContract.Events._ID));
+                deleteEventById(eventId);
+                String custom = cursor.getString(cursor.getColumnIndex(CalendarContract.Events.CUSTOM_APP_PACKAGE));
+                System.out.println("event: " + eventId + " custom: " + custom);
+            }
+        }
+    }
+
+    private void deleteEventById(int id) {
+        Uri deleteUri = ContentUris.withAppendedId(Uri.parse(CALANDER_EVENT_URL), id);
+        int row=  getContentResolver().delete(deleteUri, null, null);
+        if (row <= 0) {
+            System.out.println("删除事件: id" + id + "失败");
+        }
     }
 
 }

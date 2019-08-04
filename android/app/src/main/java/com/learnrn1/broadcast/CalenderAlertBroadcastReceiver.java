@@ -3,10 +3,13 @@ package com.learnrn1.broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
+import com.learnrn1.MainApplication;
 import com.learnrn1.alarm.SystemAlarmManager;
 
 import java.util.Date;
@@ -20,8 +23,9 @@ public class CalenderAlertBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "接收到提醒", Toast.LENGTH_SHORT).show();
-        systemAlarmManager.setAlarm("测试", "天天", context);
+        Uri uri = intent.getData();
+        String time =uri.getEncodedPath().substring(1);
+        systemAlarmManager.setAlarm(time, context);
         System.out.println("设置闹钟完成");
     }
 }

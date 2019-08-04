@@ -67,7 +67,7 @@ export default class App extends Component<Props> {
     };
     onPressAddEvent= async () => {
         let date = new Date(this.state.targetYear, this.state.targetMonth -1, this.state.targetDay, this.state.targetHour, this.state.targetMinute);
-        let endDate = new Date(this.state.targetYear, this.state.targetMonth -1, this.state.targetDay, this.state.targetHour, this.state.targetMinute + 5)
+        let endDate = new Date(this.state.targetYear, this.state.targetMonth -1, this.state.targetDay, this.state.targetHour, this.state.targetMinute + 1)
         let request = {
             title: "测试事件",
             description: "测试事件",
@@ -82,6 +82,13 @@ export default class App extends Component<Props> {
         }
     };
 
+    onPressDeleteOutDateEvent= async () => {
+        const result = await Calendar.deleteOutDateEvent();
+        if (result) {
+            Alert.alert("删除成功");
+        }
+    }
+
 
 
     render() {
@@ -94,6 +101,7 @@ export default class App extends Component<Props> {
                 <Button title="调用日期选择" onPress={this.onPressDate}/>
                 <Button title="调用时间选择" onPress={this.onPressTime}/>
                 <Button title="增加事件" onPress={this.onPressAddEvent}/>
+                <Button title="删除过时事件" onPress={this.onPressDeleteOutDateEvent}/>
             </View>
         );
     }

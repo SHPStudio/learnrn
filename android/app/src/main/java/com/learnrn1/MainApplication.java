@@ -1,6 +1,7 @@
 package com.learnrn1;
 
 import android.app.Application;
+import android.content.ContentResolver;
 import android.content.Context;
 
 import com.facebook.react.ReactApplication;
@@ -51,5 +52,9 @@ public class MainApplication extends Application implements ReactApplication {
 
   public static Context getContext() {
     return mContext;
+  }
+
+  public static ContentResolver getMContentResolver() {
+    return mContext.getContentResolver();
   }
 }

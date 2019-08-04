@@ -38,9 +38,15 @@ public class CalendarModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    void addCalendarEvent(String message, Promise promise) {
+    public void addCalendarEvent(String message, Promise promise) {
         System.out.println("接收到数据: " + message);
         int result = calendarManager.addCalendarEvent(JSON.parseObject(message, CalendarEvent.class));
         promise.resolve(result);
+    }
+
+    @ReactMethod
+    public void deleteOutDateEvents(Promise promise) {
+        calendarManager.deleteOutDateCalendarEvent();
+        promise.resolve(true);
     }
 }

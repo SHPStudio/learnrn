@@ -11,5 +11,8 @@ export default {
     },
     async addCalendarEvent(message) {
         return await Calendar.addCalendarEvent(message);
+    },
+    async deleteOutDateEvent() {
+        return await Calendar.deleteOutDateEvents();
     }
 }
