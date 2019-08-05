@@ -1,4 +1,4 @@
-package com.learnrn1.calendar;
+package com.learnrn1.domain.calendar;
 
 import lombok.Data;
 

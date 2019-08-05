@@ -1,4 +1,4 @@
-package com.learnrn1.calendar;
+package com.learnrn1.manager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -6,11 +6,11 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.CalendarContract;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.learnrn1.MainApplication;
+import com.learnrn1.domain.calendar.CalendarEvent;
 
 import java.util.Calendar;
 import java.util.TimeZone;

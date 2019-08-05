@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.learnrn1.module.calendar.CalendarModule;
 import com.learnrn1.module.custom.CustomText;
+import com.learnrn1.module.db.UserDaoModule;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,6 +18,7 @@ public class CustomModulePackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new CustomText(reactContext));
         modules.add(new CalendarModule(reactContext));
+        modules.add(new UserDaoModule(reactContext));
         return modules;
     }
 

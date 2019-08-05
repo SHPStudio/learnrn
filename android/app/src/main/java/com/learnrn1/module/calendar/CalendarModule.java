@@ -5,8 +5,8 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.learnrn1.calendar.CalendarEvent;
-import com.learnrn1.calendar.CalendarManager;
+import com.learnrn1.domain.calendar.CalendarEvent;
+import com.learnrn1.manager.CalendarManager;
 
 public class CalendarModule extends ReactContextBaseJavaModule {
     /**

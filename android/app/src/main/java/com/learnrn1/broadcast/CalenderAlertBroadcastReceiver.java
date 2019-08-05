@@ -3,17 +3,9 @@ package com.learnrn1.broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.widget.Toast;
 
-import com.learnrn1.MainApplication;
-import com.learnrn1.alarm.SystemAlarmManager;
-
-import java.util.Date;
-import java.util.Calendar;
+import com.learnrn1.manager.SystemAlarmManager;
 
 /**
  * 日历提醒广播接收器

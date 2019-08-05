@@ -11,6 +11,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, Alert, TimePickerAndroid,DatePickerAndroid} from 'react-native';
 import CustomText from './CustomText'
 import Calendar from './Calendar'
+import UserDao from './UserDao'
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -87,7 +88,21 @@ export default class App extends Component<Props> {
         if (result) {
             Alert.alert("删除成功");
         }
-    }
+    };
+
+    onPressInsert= async () => {
+        const result = await UserDao.insertUserOrUpdate({name: "shp", age: 18});
+        if (result !== 0) {
+            Alert.alert("插入成功: " + result);
+        }else {
+            Alert.alert("插入失败");
+        }
+    };
+
+    onPressQueryAll= async () => {
+       const result = await UserDao.queryAll();
+       Alert.alert(result);
+    };
 
 
 
@@ -102,6 +117,8 @@ export default class App extends Component<Props> {
                 <Button title="调用时间选择" onPress={this.onPressTime}/>
                 <Button title="增加事件" onPress={this.onPressAddEvent}/>
                 <Button title="删除过时事件" onPress={this.onPressDeleteOutDateEvent}/>
+                <Button title="插入用户" onPress={this.onPressInsert}/>
+                <Button title="查询用户" onPress={this.onPressQueryAll}/>
             </View>
         );
     }

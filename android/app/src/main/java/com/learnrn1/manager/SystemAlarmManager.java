@@ -1,4 +1,4 @@
-package com.learnrn1.alarm;
+package com.learnrn1.manager;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,9 +8,8 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.learnrn1.R;
-import com.learnrn1.calendar.CalendarEvent;
-import com.learnrn1.calendar.CalendarManager;
-import com.learnrn1.calendar.CalendarService;
+import com.learnrn1.domain.calendar.CalendarEvent;
+import com.learnrn1.service.CalendarService;
 
 import java.util.UUID;
 

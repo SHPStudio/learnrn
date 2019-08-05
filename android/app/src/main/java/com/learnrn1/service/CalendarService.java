@@ -1,9 +1,11 @@
-package com.learnrn1.calendar;
+package com.learnrn1.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationManagerCompat;
+
+import com.learnrn1.manager.CalendarManager;
 
 public class CalendarService extends Service {
     private CalendarManager calendarManager = CalendarManager.getInstance();
