@@ -1,8 +1,6 @@
-package com.shape;
+package com.learnrn1.util;
 
 import com.squareup.okhttp.*;
-import jdk.nashorn.internal.objects.NativeUint8Array;
-
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -46,7 +44,7 @@ public class GitPropertiesUtil {
 
     private static void loadProperties2Cls(Properties properties, Class cls) {
         Set<Object> keySet = properties.keySet();
-        keySet.forEach(e -> {
+        for(Object e: keySet) {
             try {
                 String key = e.toString();
                 Field field = cls.getDeclaredField(key);
@@ -71,7 +69,6 @@ public class GitPropertiesUtil {
                 }
             } catch (Exception e1) {
             }
-        });
-
+        }
     }
 }
