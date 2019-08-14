@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 import com.learnrn1.db.DaoMaster;
 import com.learnrn1.db.DaoSession;
 import com.learnrn1.module.CustomModulePackage;
+import com.learnrn1.util.GitPropertiesUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
     mContext = this;
     SoLoader.init(this, /* native exopackage */ false);
     this.initGreenDao();
+    GitPropertiesUtil.getProperties();
   }
 
   public static Context getContext() {
