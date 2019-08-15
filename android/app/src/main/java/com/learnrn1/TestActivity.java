@@ -16,6 +16,7 @@ import butterknife.OnClick;
 
 
 public class TestActivity extends Activity {
+    private long firstPressTime;
 
     @OnClick(R.id.button2)
     public void onClick() {
@@ -34,7 +35,17 @@ public class TestActivity extends Activity {
     @OnClick(R.id.button)
     public void onClick2() {
         Intent intent = new Intent();
-        intent.setClass(this,Test2Activity.class);
+        intent.setClass(this,Test3Activity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - firstPressTime < 2000) {
+            super.onBackPressed();
+        }else {
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            firstPressTime = System.currentTimeMillis();
+        }
     }
 }
