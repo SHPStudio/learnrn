@@ -55,8 +55,8 @@ public class SystemAlarmManager {
     public void setProcessAlarm(String title,String text, float process, Context context, boolean finish) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "0");
-        builder.setContentTitle("Picture Download")
-                .setContentText("Download in progress")
+        builder.setContentTitle(title)
+                .setContentText(text)
                 .setSmallIcon(R.drawable.ic_launcher_round)
                 .setPriority(NotificationCompat.PRIORITY_LOW);
 

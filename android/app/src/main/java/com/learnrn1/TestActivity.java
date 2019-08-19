@@ -11,6 +11,7 @@ import com.learnrn1.download.AppDownLoad;
 import com.learnrn1.download.DownloadListener;
 import com.learnrn1.manager.SystemAlarmManager;
 import com.learnrn1.util.AppConfig;
+import com.learnrn1.util.FileUtil;
 import com.learnrn1.util.GitPropertiesUtil;
 
 import java.io.IOException;
@@ -34,11 +35,12 @@ public class TestActivity extends Activity {
             @Override
             public void onFinished() {
                 SystemAlarmManager.getInstance().setProcessAlarm("应用下载", "下载完成", 100f, TestActivity.this, true);
+                FileUtil.installNormal(TestActivity.this, "app.apk");
             }
 
             @Override
             public void onProgress(float progress) {
-                SystemAlarmManager.getInstance().setProcessAlarm("应用下载", "正在下载中....", progress, TestActivity.this, false);
+                SystemAlarmManager.getInstance().setProcessAlarm("应用下载", "正在下载中....", progress* 100, TestActivity.this, false);
             }
 
             @Override
