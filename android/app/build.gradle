@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: 'org.greenrobot.greendao' // apply plugin
+apply plugin: 'com.jakewharton.hugo'
 
 import com.android.build.OutputFile
 
@@ -160,6 +161,8 @@ dependencies {
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'org.aspectj:aspectjrt:1.8.9'
+    implementation 'com.google.guava:guava:24.0-android'
 }
 
 // Run this once to be able to run the application with BUCK

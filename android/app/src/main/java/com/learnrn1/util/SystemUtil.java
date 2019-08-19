@@ -32,6 +32,5 @@ public class SystemUtil {
             applicationInfo = null;
         }
         return (String) packageManager.getApplicationLabel(applicationInfo);
-
     }
 }

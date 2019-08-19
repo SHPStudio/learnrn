@@ -14,11 +14,13 @@ import com.learnrn1.service.CalendarService;
 import java.util.UUID;
 
 /**
- * 系统闹钟管理器
+ * 系统提醒管理器
  */
 public class SystemAlarmManager {
     private static SystemAlarmManager instance = new SystemAlarmManager();
     private CalendarManager calendarManager = CalendarManager.getInstance();
+
+    private int systemAlartId = 10000;
 
     private SystemAlarmManager() {}
 
@@ -48,5 +50,22 @@ public class SystemAlarmManager {
             Log.e("SystemAlarmManager", "设置闹钟失败,", e);
             return false;
         }
+    }
+
+    public void setProcessAlarm(String title,String text, float process, Context context, boolean finish) {
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "0");
+        builder.setContentTitle("Picture Download")
+                .setContentText("Download in progress")
+                .setSmallIcon(R.drawable.ic_launcher_round)
+                .setPriority(NotificationCompat.PRIORITY_LOW);
+
+// Issue the initial notification with zero progress
+        int PROGRESS_MAX = 100;
+        builder.setProgress(PROGRESS_MAX, (int) process, false);
+        if (finish) {
+            builder.setProgress(0,0,false);
+        }
+        notificationManager.notify(systemAlartId, builder.build());
     }
 }
